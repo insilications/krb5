@@ -1,0 +1,4 @@
+# This file contains the output files that need %exclude. Full path
+# names, one per line.
+/usr/share/man/man5/.k5identity.5
+/usr/share/man/man5/.k5login.5
