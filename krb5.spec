@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.13.2
-Release  : 1
+Release  : 2
 URL      : https://github.com/krb5/krb5/archive/krb5-1.13.2-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.13.2-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -104,7 +104,7 @@ popd
 
 %files bin
 %defattr(-,root,root,-)
-/usr/bin/compile_et
+%exclude /usr/bin/compile_et
 /usr/bin/gss-client
 /usr/bin/gss-server
 /usr/bin/k5srvutil
@@ -135,14 +135,16 @@ popd
 
 %files data
 %defattr(-,root,root,-)
-/usr/share/et/et_c.awk
-/usr/share/et/et_h.awk
+%exclude /usr/share/et/et_c.awk
+%exclude /usr/share/et/et_h.awk
 /usr/share/examples/krb5/kdc.conf
 /usr/share/examples/krb5/krb5.conf
 /usr/share/examples/krb5/services.append
 
 %files dev
 %defattr(-,root,root,-)
+%exclude /usr/include/com_err.h
+%exclude /usr/lib64/libcom_err.so
 /usr/include/*.h
 /usr/include/gssapi/gssapi.h
 /usr/include/gssapi/gssapi_ext.h
