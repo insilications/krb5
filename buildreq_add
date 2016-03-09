@@ -7,3 +7,6 @@ dejagnu
 python-dev
 readline-dev
 groff
+e2fsprogs-extras
+e2fsprogs-data
+e2fsprogs-dev
