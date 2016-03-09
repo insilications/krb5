@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.13.2
-Release  : 2
+Release  : 3
 URL      : https://github.com/krb5/krb5/archive/krb5-1.13.2-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.13.2-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -17,6 +17,9 @@ Requires: krb5-locales
 Requires: krb5-doc
 BuildRequires : bison
 BuildRequires : dejagnu
+BuildRequires : e2fsprogs-data
+BuildRequires : e2fsprogs-dev
+BuildRequires : e2fsprogs-extras
 BuildRequires : flex
 BuildRequires : groff
 BuildRequires : openssl-dev
@@ -88,7 +91,7 @@ locales components for the krb5 package.
 
 %build
 pushd src
-%reconfigure --disable-static
+%reconfigure --disable-static --with-system-es --with-system-et
 make V=1  %{?_smp_mflags}
 popd
 
@@ -104,7 +107,6 @@ popd
 
 %files bin
 %defattr(-,root,root,-)
-%exclude /usr/bin/compile_et
 /usr/bin/gss-client
 /usr/bin/gss-server
 /usr/bin/k5srvutil
@@ -135,16 +137,12 @@ popd
 
 %files data
 %defattr(-,root,root,-)
-%exclude /usr/share/et/et_c.awk
-%exclude /usr/share/et/et_h.awk
 /usr/share/examples/krb5/kdc.conf
 /usr/share/examples/krb5/krb5.conf
 /usr/share/examples/krb5/services.append
 
 %files dev
 %defattr(-,root,root,-)
-%exclude /usr/include/com_err.h
-%exclude /usr/lib64/libcom_err.so
 /usr/include/*.h
 /usr/include/gssapi/gssapi.h
 /usr/include/gssapi/gssapi_ext.h
