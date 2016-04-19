@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.14.2
-Release  : 5
+Release  : 6
 URL      : https://github.com/krb5/krb5/archive/krb5-1.14.2-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.14.2-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -20,11 +20,13 @@ BuildRequires : dejagnu
 BuildRequires : e2fsprogs-data
 BuildRequires : e2fsprogs-dev
 BuildRequires : e2fsprogs-extras
+BuildRequires : expect
 BuildRequires : flex
 BuildRequires : groff
 BuildRequires : openssl-dev
 BuildRequires : python-dev
 BuildRequires : readline-dev
+BuildRequires : yasm
 
 %description
 Kerberos Version 5, Release 1.14

@@ -10,3 +10,5 @@ groff
 e2fsprogs-extras
 e2fsprogs-data
 e2fsprogs-dev
+yasm
+expect
