@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : krb5
-Release  : 13
+Release  : 14
 URL      : https://github.com/krb5/krb5/archive/krb5-1.14.4-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.14.4-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -182,8 +182,26 @@ popd
 /usr/include/krb5/plugin.h
 /usr/include/krb5/preauth_plugin.h
 /usr/include/krb5/pwqual_plugin.h
-/usr/lib64/*.so
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libgssapi_krb5.so
+/usr/lib64/libgssrpc.so
+/usr/lib64/libk5crypto.so
+/usr/lib64/libkadm5clnt.so
+/usr/lib64/libkadm5clnt_mit.so
+/usr/lib64/libkadm5srv.so
+/usr/lib64/libkadm5srv_mit.so
+/usr/lib64/libkdb5.so
+/usr/lib64/libkrad.so
+/usr/lib64/libkrb5.so
+/usr/lib64/libkrb5support.so
+/usr/lib64/libverto.so
+/usr/lib64/pkgconfig/gssrpc.pc
+/usr/lib64/pkgconfig/kadm-client.pc
+/usr/lib64/pkgconfig/kadm-server.pc
+/usr/lib64/pkgconfig/kdb.pc
+/usr/lib64/pkgconfig/krb5-gssapi.pc
+/usr/lib64/pkgconfig/krb5.pc
+/usr/lib64/pkgconfig/mit-krb5-gssapi.pc
+/usr/lib64/pkgconfig/mit-krb5.pc
 
 %files doc
 %defattr(-,root,root,-)
@@ -195,12 +213,31 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
 /usr/lib64/krb5/plugins/kdb/db2.so
 /usr/lib64/krb5/plugins/preauth/otp.so
 /usr/lib64/krb5/plugins/preauth/pkinit.so
 /usr/lib64/krb5/plugins/preauth/test.so
 /usr/lib64/krb5/plugins/tls/k5tls.so
+/usr/lib64/libgssapi_krb5.so.2
+/usr/lib64/libgssapi_krb5.so.2.2
+/usr/lib64/libgssrpc.so.4
+/usr/lib64/libgssrpc.so.4.2
+/usr/lib64/libk5crypto.so.3
+/usr/lib64/libk5crypto.so.3.1
+/usr/lib64/libkadm5clnt_mit.so.10
+/usr/lib64/libkadm5clnt_mit.so.10.0
+/usr/lib64/libkadm5srv_mit.so.10
+/usr/lib64/libkadm5srv_mit.so.10.0
+/usr/lib64/libkdb5.so.8
+/usr/lib64/libkdb5.so.8.0
+/usr/lib64/libkrad.so.0
+/usr/lib64/libkrad.so.0.0
+/usr/lib64/libkrb5.so.3
+/usr/lib64/libkrb5.so.3.3
+/usr/lib64/libkrb5support.so.0
+/usr/lib64/libkrb5support.so.0.1
+/usr/lib64/libverto.so.0
+/usr/lib64/libverto.so.0.0
 
 %files locales -f mit-krb5.lang 
 %defattr(-,root,root,-)
