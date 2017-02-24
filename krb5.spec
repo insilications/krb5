@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.14.4
-Release  : 15
+Release  : 16
 URL      : https://github.com/krb5/krb5/archive/krb5-1.14.4-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.14.4-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -125,7 +125,7 @@ popd
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1483236975
+export SOURCE_DATE_EPOCH=1487965121
 pushd src
 %reconfigure --disable-static --with-system-es --with-system-et
 make V=1  %{?_smp_mflags}
@@ -140,6 +140,7 @@ make V=1  %{?_smp_mflags}
 popd
 
 %install
+export SOURCE_DATE_EPOCH=1487965121
 rm -rf %{buildroot}
 pushd ../build32/src
 %make_install32
@@ -154,6 +155,9 @@ pushd src
 %make_install
 popd
 %find_lang mit-krb5
+## make_install_append content
+chmod a+x %{buildroot}/usr/bin/ksu
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)
