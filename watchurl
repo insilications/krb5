@@ -1,1 +1,0 @@
-watchurl=https://github.com/krb5/krb5/tags .*/krb5-(\d[\d.]*)-final\.tar\.gz
