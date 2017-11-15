@@ -1,0 +1,101 @@
+Configure miss: if C compiler supports -Wnewline-eof
+Configure miss: whether compile_et supports --textdomain
+Configure miss: res_ndestroy
+Configure miss: pthread_once
+Configure miss: pthread_rwlock_init
+Configure miss: keyutils.h usability
+Configure miss: keyutils.h presence
+Configure miss: keyutils.h
+Configure miss: if va_list objects can be copied by assignment
+Configure miss: tclConfig.sh
+Configure miss: if daemon needs a prototype provided
+Configure miss: if getsockname() takes arguments struct sockaddr * and size_t *
+Configure miss: if getsockname() takes arguments struct sockaddr * and int *
+Configure miss: if vasprintf needs a prototype provided
+Configure miss: if swab needs a prototype provided
+Configure miss: bswap16
+Configure miss: bswap64
+Configure miss: regexpr.h usability
+Configure miss: regexpr.h presence
+Configure miss: regexpr.h
+Configure miss: machine/endian.h usability
+Configure miss: machine/endian.h presence
+Configure miss: machine/endian.h
+Configure miss: machine/byte_order.h usability
+Configure miss: machine/byte_order.h presence
+Configure miss: machine/byte_order.h
+Configure miss: sys/bswap.h usability
+Configure miss: sys/bswap.h presence
+Configure miss: sys/bswap.h
+Configure miss: regexp.h
+Configure miss: struct stat.st_mtimensec
+Configure miss: struct stat.st_mtimespec.tv_nsec
+Configure miss: perror declaration
+Configure miss: if strptime needs a prototype provided
+Configure miss: if argument to wait is int *
+Configure miss: sigsetjmp
+Configure miss: if gethostbyname_r returns a pointer
+Configure miss: whether gmtime_r returns int
+Configure miss: if getservbyname_r returns a pointer
+Configure miss: struct lifconf
+Configure miss: struct if_laddrconf
+Configure miss: struct rt_msghdr
+Configure miss: whether to use priocntl hack
+Configure miss: xom.h usability
+Configure miss: xom.h presence
+Configure miss: xom.h
+Configure miss: MAXHOSTNAMELEN in netdb.h
+Configure miss: cmocka.h
+Configure miss: _cmocka_run_group_tests in -lcmocka
+Configure miss: SD_Init in -laceclnt
+Configure miss: readline support
+Configure miss: verto_set_flags in -lverto
+Configure miss: if C compiler supports -Wnewline-eof
+Configure miss: whether compile_et supports --textdomain
+Configure miss: res_ndestroy
+Configure miss: pthread_once
+Configure miss: pthread_rwlock_init
+Configure miss: keyutils.h usability
+Configure miss: keyutils.h presence
+Configure miss: keyutils.h
+Configure miss: tclConfig.sh
+Configure miss: if daemon needs a prototype provided
+Configure miss: if vasprintf needs a prototype provided
+Configure miss: if swab needs a prototype provided
+Configure miss: bswap16
+Configure miss: bswap64
+Configure miss: regexpr.h usability
+Configure miss: regexpr.h presence
+Configure miss: regexpr.h
+Configure miss: machine/endian.h usability
+Configure miss: machine/endian.h presence
+Configure miss: machine/endian.h
+Configure miss: machine/byte_order.h usability
+Configure miss: machine/byte_order.h presence
+Configure miss: machine/byte_order.h
+Configure miss: sys/bswap.h usability
+Configure miss: sys/bswap.h presence
+Configure miss: sys/bswap.h
+Configure miss: regexp.h
+Configure miss: struct stat.st_mtimensec
+Configure miss: struct stat.st_mtimespec.tv_nsec
+Configure miss: perror declaration
+Configure miss: if strptime needs a prototype provided
+Configure miss: if argument to wait is int *
+Configure miss: sigsetjmp
+Configure miss: if gethostbyname_r returns a pointer
+Configure miss: whether gmtime_r returns int
+Configure miss: if getservbyname_r returns a pointer
+Configure miss: struct lifconf
+Configure miss: struct if_laddrconf
+Configure miss: struct rt_msghdr
+Configure miss: whether to use priocntl hack
+Configure miss: xom.h usability
+Configure miss: xom.h presence
+Configure miss: xom.h
+Configure miss: MAXHOSTNAMELEN in netdb.h
+Configure miss: cmocka.h
+Configure miss: _cmocka_run_group_tests in -lcmocka
+Configure miss: SD_Init in -laceclnt
+Configure miss: readline support
+Configure miss: verto_set_flags in -lverto
