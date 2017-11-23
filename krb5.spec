@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.15.2.final
-Release  : 19
+Release  : 20
 URL      : https://github.com/krb5/krb5/archive/krb5-1.15.2-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.15.2-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -23,12 +23,8 @@ BuildRequires : e2fsprogs-dev32
 BuildRequires : e2fsprogs-extras
 BuildRequires : expect
 BuildRequires : flex
-BuildRequires : gcc-dev32
-BuildRequires : gcc-libgcc32
-BuildRequires : gcc-libstdc++32
-BuildRequires : glibc-dev32
-BuildRequires : glibc-libc32
 BuildRequires : groff
+BuildRequires : openldap-dev
 BuildRequires : openssl-dev
 BuildRequires : openssl-dev32
 BuildRequires : python-dev
@@ -71,18 +67,6 @@ Provides: krb5-devel
 dev components for the krb5 package.
 
 
-%package dev32
-Summary: dev32 components for the krb5 package.
-Group: Default
-Requires: krb5-lib32
-Requires: krb5-bin
-Requires: krb5-data
-Requires: krb5-dev
-
-%description dev32
-dev32 components for the krb5 package.
-
-
 %package doc
 Summary: doc components for the krb5 package.
 Group: Documentation
@@ -100,15 +84,6 @@ Requires: krb5-data
 lib components for the krb5 package.
 
 
-%package lib32
-Summary: lib32 components for the krb5 package.
-Group: Default
-Requires: krb5-data
-
-%description lib32
-lib32 components for the krb5 package.
-
-
 %package locales
 Summary: locales components for the krb5 package.
 Group: Default
@@ -119,41 +94,21 @@ locales components for the krb5 package.
 
 %prep
 %setup -q -n krb5-krb5-1.15.2-final
-pushd ..
-cp -a krb5-krb5-1.15.2-final build32
-popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1510777380
+export SOURCE_DATE_EPOCH=1511469310
 pushd src
-%reconfigure --disable-static --with-system-es --with-system-et
-make V=1  %{?_smp_mflags}
-popd
-pushd ../build32/src
-export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
-export CFLAGS="$CFLAGS -m32"
-export CXXFLAGS="$CXXFLAGS -m32"
-export LDFLAGS="$LDFLAGS -m32"
-%reconfigure --disable-static --with-system-es --with-system-et  --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+%reconfigure --disable-static --with-system-es --with-system-et --with-ldap
 make V=1  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1510777380
+export SOURCE_DATE_EPOCH=1511469310
 rm -rf %{buildroot}
-pushd ../build32/src
-%make_install32
-if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
-then
-pushd %{buildroot}/usr/lib32/pkgconfig
-for i in *.pc ; do ln -s $i 32$i ; done
-popd
-fi
-popd
 pushd src
 %make_install
 popd
@@ -173,6 +128,7 @@ chmod a+x %{buildroot}/usr/bin/ksu
 /usr/bin/kadmin
 /usr/bin/kadmin.local
 /usr/bin/kadmind
+/usr/bin/kdb5_ldap_util
 /usr/bin/kdb5_util
 /usr/bin/kdestroy
 /usr/bin/kinit
@@ -247,6 +203,7 @@ chmod a+x %{buildroot}/usr/bin/ksu
 /usr/lib64/libkadm5srv.so
 /usr/lib64/libkadm5srv_mit.so
 /usr/lib64/libkdb5.so
+/usr/lib64/libkdb_ldap.so
 /usr/lib64/libkrad.so
 /usr/lib64/libkrb5.so
 /usr/lib64/libkrb5support.so
@@ -260,37 +217,6 @@ chmod a+x %{buildroot}/usr/bin/ksu
 /usr/lib64/pkgconfig/mit-krb5-gssapi.pc
 /usr/lib64/pkgconfig/mit-krb5.pc
 
-%files dev32
-%defattr(-,root,root,-)
-/usr/lib32/libgssapi_krb5.so
-/usr/lib32/libgssrpc.so
-/usr/lib32/libk5crypto.so
-/usr/lib32/libkadm5clnt.so
-/usr/lib32/libkadm5clnt_mit.so
-/usr/lib32/libkadm5srv.so
-/usr/lib32/libkadm5srv_mit.so
-/usr/lib32/libkdb5.so
-/usr/lib32/libkrad.so
-/usr/lib32/libkrb5.so
-/usr/lib32/libkrb5support.so
-/usr/lib32/libverto.so
-/usr/lib32/pkgconfig/32gssrpc.pc
-/usr/lib32/pkgconfig/32kadm-client.pc
-/usr/lib32/pkgconfig/32kadm-server.pc
-/usr/lib32/pkgconfig/32kdb.pc
-/usr/lib32/pkgconfig/32krb5-gssapi.pc
-/usr/lib32/pkgconfig/32krb5.pc
-/usr/lib32/pkgconfig/32mit-krb5-gssapi.pc
-/usr/lib32/pkgconfig/32mit-krb5.pc
-/usr/lib32/pkgconfig/gssrpc.pc
-/usr/lib32/pkgconfig/kadm-client.pc
-/usr/lib32/pkgconfig/kadm-server.pc
-/usr/lib32/pkgconfig/kdb.pc
-/usr/lib32/pkgconfig/krb5-gssapi.pc
-/usr/lib32/pkgconfig/krb5.pc
-/usr/lib32/pkgconfig/mit-krb5-gssapi.pc
-/usr/lib32/pkgconfig/mit-krb5.pc
-
 %files doc
 %defattr(-,root,root,-)
 %doc /usr/share/man/man1/*
@@ -302,6 +228,7 @@ chmod a+x %{buildroot}/usr/bin/ksu
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/krb5/plugins/kdb/db2.so
+/usr/lib64/krb5/plugins/kdb/kldap.so
 /usr/lib64/krb5/plugins/preauth/otp.so
 /usr/lib64/krb5/plugins/preauth/pkinit.so
 /usr/lib64/krb5/plugins/preauth/test.so
@@ -318,6 +245,8 @@ chmod a+x %{buildroot}/usr/bin/ksu
 /usr/lib64/libkadm5srv_mit.so.11.0
 /usr/lib64/libkdb5.so.8
 /usr/lib64/libkdb5.so.8.0
+/usr/lib64/libkdb_ldap.so.1
+/usr/lib64/libkdb_ldap.so.1.0
 /usr/lib64/libkrad.so.0
 /usr/lib64/libkrad.so.0.0
 /usr/lib64/libkrb5.so.3
@@ -326,34 +255,6 @@ chmod a+x %{buildroot}/usr/bin/ksu
 /usr/lib64/libkrb5support.so.0.1
 /usr/lib64/libverto.so.0
 /usr/lib64/libverto.so.0.0
-
-%files lib32
-%defattr(-,root,root,-)
-/usr/lib32/krb5/plugins/kdb/db2.so
-/usr/lib32/krb5/plugins/preauth/otp.so
-/usr/lib32/krb5/plugins/preauth/pkinit.so
-/usr/lib32/krb5/plugins/preauth/test.so
-/usr/lib32/krb5/plugins/tls/k5tls.so
-/usr/lib32/libgssapi_krb5.so.2
-/usr/lib32/libgssapi_krb5.so.2.2
-/usr/lib32/libgssrpc.so.4
-/usr/lib32/libgssrpc.so.4.2
-/usr/lib32/libk5crypto.so.3
-/usr/lib32/libk5crypto.so.3.1
-/usr/lib32/libkadm5clnt_mit.so.11
-/usr/lib32/libkadm5clnt_mit.so.11.0
-/usr/lib32/libkadm5srv_mit.so.11
-/usr/lib32/libkadm5srv_mit.so.11.0
-/usr/lib32/libkdb5.so.8
-/usr/lib32/libkdb5.so.8.0
-/usr/lib32/libkrad.so.0
-/usr/lib32/libkrad.so.0.0
-/usr/lib32/libkrb5.so.3
-/usr/lib32/libkrb5.so.3.3
-/usr/lib32/libkrb5support.so.0
-/usr/lib32/libkrb5support.so.0.1
-/usr/lib32/libverto.so.0
-/usr/lib32/libverto.so.0.0
 
 %files locales -f mit-krb5.lang
 %defattr(-,root,root,-)
