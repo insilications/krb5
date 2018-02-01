@@ -1,3 +1,4 @@
+Configure miss: if C compiler supports -Werror=unknown-warning-option
 Configure miss: if C compiler supports -Wnewline-eof
 Configure miss: whether compile_et supports --textdomain
 Configure miss: res_ndestroy
@@ -28,7 +29,6 @@ Configure miss: sys/bswap.h usability
 Configure miss: sys/bswap.h presence
 Configure miss: sys/bswap.h
 Configure miss: regexp.h
-Configure miss: struct stat.st_mtimensec
 Configure miss: struct stat.st_mtimespec.tv_nsec
 Configure miss: perror declaration
 Configure miss: if strptime needs a prototype provided
@@ -47,7 +47,6 @@ Configure miss: xom.h
 Configure miss: MAXHOSTNAMELEN in netdb.h
 Configure miss: cmocka.h
 Configure miss: _cmocka_run_group_tests in -lcmocka
-Configure miss: ldap_url_parse_nodn
 Configure miss: ber_init in -lldap
 Configure miss: sasl/sasl.h usability
 Configure miss: sasl/sasl.h presence
