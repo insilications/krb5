@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.16.final
-Release  : 23
+Release  : 24
 URL      : https://github.com/krb5/krb5/archive/krb5-1.16-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.16-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
