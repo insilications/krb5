@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.16.final
-Release  : 24
+Release  : 25
 URL      : https://github.com/krb5/krb5/archive/krb5-1.16-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.16-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -31,6 +31,7 @@ BuildRequires : python-dev
 BuildRequires : readline-dev
 BuildRequires : readline-dev32
 BuildRequires : yasm
+Patch1: cve-2018-5709.patch
 
 %description
 Kerberos Version 5, Release 1.16
@@ -94,20 +95,25 @@ locales components for the krb5 package.
 
 %prep
 %setup -q -n krb5-krb5-1.16-final
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517518787
+export SOURCE_DATE_EPOCH=1522708403
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
 pushd src
 %reconfigure --disable-static --with-system-es --with-system-et --with-ldap
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1517518787
+export SOURCE_DATE_EPOCH=1522708403
 rm -rf %{buildroot}
 pushd src
 %make_install
