@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.16.final
-Release  : 26
+Release  : 27
 URL      : https://github.com/krb5/krb5/archive/krb5-1.16-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.16-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -102,18 +102,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1522708403
-export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
-export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
-export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
-export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs "
+export SOURCE_DATE_EPOCH=1526010356
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 pushd src
 %reconfigure --disable-static --with-system-es --with-system-et --with-ldap
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1522708403
+export SOURCE_DATE_EPOCH=1526010356
 rm -rf %{buildroot}
 pushd src
 %make_install
