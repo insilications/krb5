@@ -27,7 +27,7 @@ BuildRequires : groff
 BuildRequires : openldap-dev
 BuildRequires : openssl-dev
 BuildRequires : openssl-dev32
-BuildRequires : python-dev
+
 BuildRequires : readline-dev
 BuildRequires : readline-dev32
 BuildRequires : yasm
