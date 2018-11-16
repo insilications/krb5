@@ -4,18 +4,20 @@
 #
 Name     : krb5
 Version  : 1.16.final
-Release  : 29
+Release  : 30
 URL      : https://github.com/krb5/krb5/archive/krb5-1.16-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.16-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
 Group    : Development/Tools
 License  : BSD-2-Clause MIT
-Requires: krb5-bin
-Requires: krb5-lib
-Requires: krb5-data
-Requires: krb5-locales
-Requires: krb5-doc
+Requires: krb5-bin = %{version}-%{release}
+Requires: krb5-data = %{version}-%{release}
+Requires: krb5-lib = %{version}-%{release}
+Requires: krb5-license = %{version}-%{release}
+Requires: krb5-locales = %{version}-%{release}
+Requires: krb5-man = %{version}-%{release}
 BuildRequires : bison
+BuildRequires : cyrus-sasl-dev
 BuildRequires : dejagnu
 BuildRequires : e2fsprogs-data
 BuildRequires : e2fsprogs-dev
@@ -24,12 +26,14 @@ BuildRequires : e2fsprogs-extras
 BuildRequires : expect
 BuildRequires : flex
 BuildRequires : groff
+BuildRequires : keyutils-dev
 BuildRequires : openldap-dev
 BuildRequires : openssl-dev
 BuildRequires : openssl-dev32
-
+BuildRequires : python-dev
 BuildRequires : readline-dev
 BuildRequires : readline-dev32
+BuildRequires : tcl-dev
 BuildRequires : yasm
 Patch1: cve-2018-5709.patch
 
@@ -42,7 +46,9 @@ The MIT Kerberos Team
 %package bin
 Summary: bin components for the krb5 package.
 Group: Binaries
-Requires: krb5-data
+Requires: krb5-data = %{version}-%{release}
+Requires: krb5-license = %{version}-%{release}
+Requires: krb5-man = %{version}-%{release}
 
 %description bin
 bin components for the krb5 package.
@@ -59,30 +65,31 @@ data components for the krb5 package.
 %package dev
 Summary: dev components for the krb5 package.
 Group: Development
-Requires: krb5-lib
-Requires: krb5-bin
-Requires: krb5-data
-Provides: krb5-devel
+Requires: krb5-lib = %{version}-%{release}
+Requires: krb5-bin = %{version}-%{release}
+Requires: krb5-data = %{version}-%{release}
+Provides: krb5-devel = %{version}-%{release}
 
 %description dev
 dev components for the krb5 package.
 
 
-%package doc
-Summary: doc components for the krb5 package.
-Group: Documentation
-
-%description doc
-doc components for the krb5 package.
-
-
 %package lib
 Summary: lib components for the krb5 package.
 Group: Libraries
-Requires: krb5-data
+Requires: krb5-data = %{version}-%{release}
+Requires: krb5-license = %{version}-%{release}
 
 %description lib
 lib components for the krb5 package.
+
+
+%package license
+Summary: license components for the krb5 package.
+Group: Default
+
+%description license
+license components for the krb5 package.
 
 
 %package locales
@@ -91,6 +98,14 @@ Group: Default
 
 %description locales
 locales components for the krb5 package.
+
+
+%package man
+Summary: man components for the krb5 package.
+Group: Default
+
+%description man
+man components for the krb5 package.
 
 
 %prep
@@ -102,7 +117,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1526010356
+export SOURCE_DATE_EPOCH=1542400604
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -113,15 +128,18 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1526010356
+export SOURCE_DATE_EPOCH=1542400604
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/krb5
+cp NOTICE %{buildroot}/usr/share/package-licenses/krb5/NOTICE
+cp src/lib/gssapi/LICENSE %{buildroot}/usr/share/package-licenses/krb5/src_lib_gssapi_LICENSE
 pushd src
 %make_install
 popd
 %find_lang mit-krb5
-## make_install_append content
+## install_append content
 chmod a+x %{buildroot}/usr/bin/ksu
-## make_install_append end
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -226,14 +244,6 @@ chmod a+x %{buildroot}/usr/bin/ksu
 /usr/lib64/pkgconfig/mit-krb5-gssapi.pc
 /usr/lib64/pkgconfig/mit-krb5.pc
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man5/*
-%doc /usr/share/man/man8/*
-%exclude /usr/share/man/man5/.k5identity.5
-%exclude /usr/share/man/man5/.k5login.5
-
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/krb5/plugins/kdb/db2.so
@@ -264,6 +274,42 @@ chmod a+x %{buildroot}/usr/bin/ksu
 /usr/lib64/libkrb5support.so.0.1
 /usr/lib64/libverto.so.0
 /usr/lib64/libverto.so.0.0
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/krb5/NOTICE
+/usr/share/package-licenses/krb5/src_lib_gssapi_LICENSE
+
+%files man
+%defattr(0644,root,root,0755)
+%exclude /usr/share/man/man5/.k5identity.5
+%exclude /usr/share/man/man5/.k5login.5
+/usr/share/man/man1/k5srvutil.1
+/usr/share/man/man1/kadmin.1
+/usr/share/man/man1/kdestroy.1
+/usr/share/man/man1/kinit.1
+/usr/share/man/man1/klist.1
+/usr/share/man/man1/kpasswd.1
+/usr/share/man/man1/krb5-config.1
+/usr/share/man/man1/ksu.1
+/usr/share/man/man1/kswitch.1
+/usr/share/man/man1/ktutil.1
+/usr/share/man/man1/kvno.1
+/usr/share/man/man1/sclient.1
+/usr/share/man/man5/k5identity.5
+/usr/share/man/man5/k5login.5
+/usr/share/man/man5/kadm5.acl.5
+/usr/share/man/man5/kdc.conf.5
+/usr/share/man/man5/krb5.conf.5
+/usr/share/man/man8/kadmin.local.8
+/usr/share/man/man8/kadmind.8
+/usr/share/man/man8/kdb5_ldap_util.8
+/usr/share/man/man8/kdb5_util.8
+/usr/share/man/man8/kprop.8
+/usr/share/man/man8/kpropd.8
+/usr/share/man/man8/kproplog.8
+/usr/share/man/man8/krb5kdc.8
+/usr/share/man/man8/sserver.8
 
 %files locales -f mit-krb5.lang
 %defattr(-,root,root,-)

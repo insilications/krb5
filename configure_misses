@@ -4,9 +4,6 @@ Configure miss: whether compile_et supports --textdomain
 Configure miss: res_ndestroy
 Configure miss: pthread_once
 Configure miss: pthread_rwlock_init
-Configure miss: keyutils.h usability
-Configure miss: keyutils.h presence
-Configure miss: keyutils.h
 Configure miss: if va_list objects can be copied by assignment
 Configure miss: tclConfig.sh
 Configure miss: if daemon needs a prototype provided
@@ -48,9 +45,6 @@ Configure miss: MAXHOSTNAMELEN in netdb.h
 Configure miss: cmocka.h
 Configure miss: _cmocka_run_group_tests in -lcmocka
 Configure miss: ber_init in -lldap
-Configure miss: sasl/sasl.h usability
-Configure miss: sasl/sasl.h presence
-Configure miss: sasl/sasl.h
 Configure miss: SD_Init in -laceclnt
 Configure miss: readline support
 Configure miss: verto_set_flags in -lverto
