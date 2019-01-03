@@ -4,12 +4,12 @@
 #
 Name     : krb5
 Version  : 1.16.2.final
-Release  : 31
+Release  : 32
 URL      : https://github.com/krb5/krb5/archive/krb5-1.16.2-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.16.2-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
 Group    : Development/Tools
-License  : BSD-2-Clause MIT
+License  : MIT
 Requires: krb5-bin = %{version}-%{release}
 Requires: krb5-data = %{version}-%{release}
 Requires: krb5-lib = %{version}-%{release}
@@ -36,6 +36,7 @@ BuildRequires : readline-dev32
 BuildRequires : tcl-dev
 BuildRequires : yasm
 Patch1: cve-2018-5709.patch
+Patch2: CVE-2018-20217.patch
 
 %description
 Kerberos Version 5, Release 1.16
@@ -111,13 +112,14 @@ man components for the krb5 package.
 %prep
 %setup -q -n krb5-krb5-1.16.2-final
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542706586
+export SOURCE_DATE_EPOCH=1546542236
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -128,10 +130,9 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1542706586
+export SOURCE_DATE_EPOCH=1546542236
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/krb5
-cp NOTICE %{buildroot}/usr/share/package-licenses/krb5/NOTICE
 cp src/lib/gssapi/LICENSE %{buildroot}/usr/share/package-licenses/krb5/src_lib_gssapi_LICENSE
 pushd src
 %make_install
@@ -277,7 +278,6 @@ chmod a+x %{buildroot}/usr/bin/ksu
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/krb5/NOTICE
 /usr/share/package-licenses/krb5/src_lib_gssapi_LICENSE
 
 %files man
