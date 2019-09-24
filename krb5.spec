@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.17.final
-Release  : 33
+Release  : 34
 URL      : https://github.com/krb5/krb5/archive/krb5-1.17-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.17-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -30,26 +30,22 @@ BuildRequires : keyutils-dev
 BuildRequires : openldap-dev
 BuildRequires : openssl-dev
 BuildRequires : openssl-dev32
-BuildRequires : python-dev
 BuildRequires : readline-dev
 BuildRequires : readline-dev32
 BuildRequires : tcl-dev
 BuildRequires : yasm
 
 %description
-MUTT UCData Package 2.5
------------------------
-This is a package that supports ctype-like operations for Unicode UCS-2 text
-(and surrogates), case mapping, decomposition lookup, and provides a
-bidirectional reordering algorithm.  To use it, you will need to get the
-latest "UnicodeData-*.txt" (or later) file from the Unicode Web or FTP site.
+Kerberos Version 5, Release 1.17
+Release Notes
+The MIT Kerberos Team
+---------------------------
 
 %package bin
 Summary: bin components for the krb5 package.
 Group: Binaries
 Requires: krb5-data = %{version}-%{release}
 Requires: krb5-license = %{version}-%{release}
-Requires: krb5-man = %{version}-%{release}
 
 %description bin
 bin components for the krb5 package.
@@ -70,6 +66,7 @@ Requires: krb5-lib = %{version}-%{release}
 Requires: krb5-bin = %{version}-%{release}
 Requires: krb5-data = %{version}-%{release}
 Provides: krb5-devel = %{version}-%{release}
+Requires: krb5 = %{version}-%{release}
 
 %description dev
 dev components for the krb5 package.
@@ -116,19 +113,20 @@ man components for the krb5 package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1549253239
-export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1569360121
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 pushd src
 %reconfigure --disable-static --with-system-es --with-system-et --with-ldap
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549253239
+export SOURCE_DATE_EPOCH=1569360121
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/krb5
 cp NOTICE %{buildroot}/usr/share/package-licenses/krb5/NOTICE
@@ -137,6 +135,14 @@ pushd src
 %make_install
 popd
 %find_lang mit-krb5
+## Remove excluded files
+rm -f %{buildroot}/usr/bin/compile_et
+rm -f %{buildroot}/usr/include/com_err.h
+rm -f %{buildroot}/usr/lib64/libcom_err.so
+rm -f %{buildroot}/usr/share/et/et_c.awk
+rm -f %{buildroot}/usr/share/et/et_h.awk
+rm -f %{buildroot}/usr/share/man/man5/.k5identity.5
+rm -f %{buildroot}/usr/share/man/man5/.k5login.5
 ## install_append content
 chmod a+x %{buildroot}/usr/bin/ksu
 ## install_append end
@@ -183,7 +189,7 @@ chmod a+x %{buildroot}/usr/bin/ksu
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/gssapi.h
 /usr/include/gssapi/gssapi.h
 /usr/include/gssapi/gssapi_ext.h
 /usr/include/gssapi/gssapi_generic.h
@@ -208,6 +214,9 @@ chmod a+x %{buildroot}/usr/bin/ksu
 /usr/include/kadm5/admin.h
 /usr/include/kadm5/chpass_util_strings.h
 /usr/include/kadm5/kadm_err.h
+/usr/include/kdb.h
+/usr/include/krad.h
+/usr/include/krb5.h
 /usr/include/krb5/ccselect_plugin.h
 /usr/include/krb5/certauth_plugin.h
 /usr/include/krb5/clpreauth_plugin.h
@@ -222,6 +231,9 @@ chmod a+x %{buildroot}/usr/bin/ksu
 /usr/include/krb5/plugin.h
 /usr/include/krb5/preauth_plugin.h
 /usr/include/krb5/pwqual_plugin.h
+/usr/include/profile.h
+/usr/include/verto-module.h
+/usr/include/verto.h
 /usr/lib64/libgssapi_krb5.so
 /usr/lib64/libgssrpc.so
 /usr/lib64/libk5crypto.so
@@ -283,8 +295,6 @@ chmod a+x %{buildroot}/usr/bin/ksu
 
 %files man
 %defattr(0644,root,root,0755)
-%exclude /usr/share/man/man5/.k5identity.5
-%exclude /usr/share/man/man5/.k5login.5
 /usr/share/man/man1/k5srvutil.1
 /usr/share/man/man1/kadmin.1
 /usr/share/man/man1/kdestroy.1

@@ -4,7 +4,6 @@ openssl-dev
 flex
 bison
 dejagnu
-python-dev
 readline-dev
 groff
 e2fsprogs-extras
