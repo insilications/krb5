@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.17.final
-Release  : 34
+Release  : 35
 URL      : https://github.com/krb5/krb5/archive/krb5-1.17-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.17-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -33,6 +33,7 @@ BuildRequires : openssl-dev32
 BuildRequires : readline-dev
 BuildRequires : readline-dev32
 BuildRequires : tcl-dev
+BuildRequires : util-linux
 BuildRequires : yasm
 
 %description
@@ -108,13 +109,14 @@ man components for the krb5 package.
 
 %prep
 %setup -q -n krb5-krb5-1.17-final
+cd %{_builddir}/krb5-krb5-1.17-final
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569360121
+export SOURCE_DATE_EPOCH=1572464608
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -126,11 +128,11 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1569360121
+export SOURCE_DATE_EPOCH=1572464608
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/krb5
-cp NOTICE %{buildroot}/usr/share/package-licenses/krb5/NOTICE
-cp src/lib/gssapi/LICENSE %{buildroot}/usr/share/package-licenses/krb5/src_lib_gssapi_LICENSE
+cp %{_builddir}/krb5-krb5-1.17-final/NOTICE %{buildroot}/usr/share/package-licenses/krb5/b377e15c40e97ddb4d180b42fecde1b505e79de3
+cp %{_builddir}/krb5-krb5-1.17-final/src/lib/gssapi/LICENSE %{buildroot}/usr/share/package-licenses/krb5/feb23c7f425c7c619cb04c91997f471e2d3b8e9b
 pushd src
 %make_install
 popd
@@ -290,8 +292,8 @@ chmod a+x %{buildroot}/usr/bin/ksu
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/krb5/NOTICE
-/usr/share/package-licenses/krb5/src_lib_gssapi_LICENSE
+/usr/share/package-licenses/krb5/b377e15c40e97ddb4d180b42fecde1b505e79de3
+/usr/share/package-licenses/krb5/feb23c7f425c7c619cb04c91997f471e2d3b8e9b
 
 %files man
 %defattr(0644,root,root,0755)
