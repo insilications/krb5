@@ -1,5 +1,8 @@
 # This file contains pkgconfig build requirements that get picked up
 # but are undesirable. One entry per line, no whitespace.
 resolv_wrapper
+32resolv_wrapper
 libverto
+32libverto
 libedit
+32libedit
