@@ -46,7 +46,6 @@ Configure miss: cmocka.h
 Configure miss: _cmocka_run_group_tests in -lcmocka
 Configure miss: ber_init in -lldap
 Configure miss: SD_Init in -laceclnt
-Configure miss: mdb_env_create in -llmdb
 Configure miss: libedit
 Configure miss: libverto
 Configure miss: if C compiler supports -Werror=unknown-warning-option

@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.17.final
-Release  : 36
+Release  : 37
 URL      : https://github.com/krb5/krb5/archive/krb5-1.17-final.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.17-final.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -32,6 +32,7 @@ BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
 BuildRequires : groff
 BuildRequires : keyutils-dev
+BuildRequires : lmdb-dev
 BuildRequires : openldap-dev
 BuildRequires : openssl-dev
 BuildRequires : openssl-dev32
@@ -147,7 +148,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1572465025
+export SOURCE_DATE_EPOCH=1575964260
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -168,7 +169,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1572465025
+export SOURCE_DATE_EPOCH=1575964260
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/krb5
 cp %{_builddir}/krb5-krb5-1.17-final/NOTICE %{buildroot}/usr/share/package-licenses/krb5/b377e15c40e97ddb4d180b42fecde1b505e79de3
@@ -342,6 +343,7 @@ chmod a+x %{buildroot}/usr/bin/ksu
 %defattr(-,root,root,-)
 /usr/lib64/krb5/plugins/kdb/db2.so
 /usr/lib64/krb5/plugins/kdb/kldap.so
+/usr/lib64/krb5/plugins/kdb/klmdb.so
 /usr/lib64/krb5/plugins/preauth/otp.so
 /usr/lib64/krb5/plugins/preauth/pkinit.so
 /usr/lib64/krb5/plugins/preauth/spake.so
