@@ -13,6 +13,7 @@ Configure miss: if vasprintf needs a prototype provided
 Configure miss: if swab needs a prototype provided
 Configure miss: bswap16
 Configure miss: bswap64
+Configure miss: explicit_memset
 Configure miss: regexpr.h usability
 Configure miss: regexpr.h presence
 Configure miss: regexpr.h
@@ -54,14 +55,14 @@ Configure miss: whether compile_et supports --textdomain
 Configure miss: res_ndestroy
 Configure miss: pthread_once
 Configure miss: pthread_rwlock_init
-Configure miss: add_key in -lkeyutils
-Configure miss: keyctl_get_persistent in -lkeyutils
 Configure miss: tclConfig.sh
 Configure miss: if daemon needs a prototype provided
 Configure miss: if vasprintf needs a prototype provided
 Configure miss: if swab needs a prototype provided
+Configure miss: add_key in -lkeyutils
 Configure miss: bswap16
 Configure miss: bswap64
+Configure miss: explicit_memset
 Configure miss: regexpr.h usability
 Configure miss: regexpr.h presence
 Configure miss: regexpr.h

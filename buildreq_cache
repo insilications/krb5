@@ -1,7 +1,5 @@
-1.17.final
+1.18.3
 cyrus-sasl-dev
-keyutils-dev
 openldap-dev
 pkg-config
 tcl-dev
-util-linux
