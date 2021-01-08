@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.18.3
-Release  : 38
+Release  : 39
 URL      : https://github.com/krb5/krb5/archive/krb5-1.18.3-final/krb5-1.18.3.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.18.3-final/krb5-1.18.3.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -41,6 +41,7 @@ BuildRequires : readline-dev
 BuildRequires : readline-dev32
 BuildRequires : tcl-dev
 BuildRequires : yasm
+Patch1: 0001-Add-Require-dependency-for-mit-krb5-on-comm_err.patch
 
 %description
 Kerberos Version 5, Release 1.18
@@ -138,6 +139,7 @@ man components for the krb5 package.
 %prep
 %setup -q -n krb5-krb5-1.18.3-final
 cd %{_builddir}/krb5-krb5-1.18.3-final
+%patch1 -p1
 pushd ..
 cp -a krb5-krb5-1.18.3-final build32
 popd
@@ -147,7 +149,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1605728248
+export SOURCE_DATE_EPOCH=1610140057
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -168,7 +170,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1605728248
+export SOURCE_DATE_EPOCH=1610140057
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/krb5
 cp %{_builddir}/krb5-krb5-1.18.3-final/NOTICE %{buildroot}/usr/share/package-licenses/krb5/d7ec65af3afb6367446a1bb55431b22ab8af401e

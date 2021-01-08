@@ -1,3 +1,4 @@
+Configure miss: g++ option to enable C++11 features
 Configure miss: if C compiler supports -Werror=unknown-warning-option
 Configure miss: if C compiler supports -Wnewline-eof
 Configure miss: whether compile_et supports --textdomain
@@ -11,20 +12,13 @@ Configure miss: if getsockname() takes arguments struct sockaddr * and size_t *
 Configure miss: if getsockname() takes arguments struct sockaddr * and int *
 Configure miss: if vasprintf needs a prototype provided
 Configure miss: if swab needs a prototype provided
+Configure miss: library containing yywrap
 Configure miss: bswap16
 Configure miss: bswap64
 Configure miss: explicit_memset
-Configure miss: regexpr.h usability
-Configure miss: regexpr.h presence
 Configure miss: regexpr.h
-Configure miss: machine/endian.h usability
-Configure miss: machine/endian.h presence
 Configure miss: machine/endian.h
-Configure miss: machine/byte_order.h usability
-Configure miss: machine/byte_order.h presence
 Configure miss: machine/byte_order.h
-Configure miss: sys/bswap.h usability
-Configure miss: sys/bswap.h presence
 Configure miss: sys/bswap.h
 Configure miss: regexp.h
 Configure miss: struct stat.st_mtimespec.tv_nsec
@@ -39,8 +33,6 @@ Configure miss: struct lifconf
 Configure miss: struct if_laddrconf
 Configure miss: struct rt_msghdr
 Configure miss: whether to use priocntl hack
-Configure miss: xom.h usability
-Configure miss: xom.h presence
 Configure miss: xom.h
 Configure miss: MAXHOSTNAMELEN in netdb.h
 Configure miss: cmocka.h
@@ -49,6 +41,7 @@ Configure miss: ber_init in -lldap
 Configure miss: SD_Init in -laceclnt
 Configure miss: libedit
 Configure miss: libverto
+Configure miss: g++ option to enable C++11 features
 Configure miss: if C compiler supports -Werror=unknown-warning-option
 Configure miss: if C compiler supports -Wnewline-eof
 Configure miss: whether compile_et supports --textdomain
@@ -60,20 +53,13 @@ Configure miss: if daemon needs a prototype provided
 Configure miss: if vasprintf needs a prototype provided
 Configure miss: if swab needs a prototype provided
 Configure miss: add_key in -lkeyutils
+Configure miss: library containing yywrap
 Configure miss: bswap16
 Configure miss: bswap64
 Configure miss: explicit_memset
-Configure miss: regexpr.h usability
-Configure miss: regexpr.h presence
 Configure miss: regexpr.h
-Configure miss: machine/endian.h usability
-Configure miss: machine/endian.h presence
 Configure miss: machine/endian.h
-Configure miss: machine/byte_order.h usability
-Configure miss: machine/byte_order.h presence
 Configure miss: machine/byte_order.h
-Configure miss: sys/bswap.h usability
-Configure miss: sys/bswap.h presence
 Configure miss: sys/bswap.h
 Configure miss: regexp.h
 Configure miss: struct stat.st_mtimespec.tv_nsec
@@ -90,8 +76,6 @@ Configure miss: struct rt_msghdr
 Configure miss: __int128_t
 Configure miss: __uint128_t
 Configure miss: whether to use priocntl hack
-Configure miss: xom.h usability
-Configure miss: xom.h presence
 Configure miss: xom.h
 Configure miss: MAXHOSTNAMELEN in netdb.h
 Configure miss: cmocka.h
