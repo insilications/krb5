@@ -16,7 +16,7 @@ index 0308815..b99b9f7 100644
  Name: mit-krb5
  Description: An implementation of Kerberos network authentication
  Version: @KRB5_VERSION@
-+Requires: comm_err
++Requires: com_err
  Cflags: -I${includedir}
  Libs: -L${libdir} -lkrb5 -lk5crypto -lcom_err
  Libs.private: -lkrb5support
