@@ -4,7 +4,7 @@
 #
 Name     : krb5
 Version  : 1.18.3
-Release  : 40
+Release  : 41
 URL      : https://github.com/krb5/krb5/archive/krb5-1.18.3-final/krb5-1.18.3.tar.gz
 Source0  : https://github.com/krb5/krb5/archive/krb5-1.18.3-final/krb5-1.18.3.tar.gz
 Summary  : An implementation of Kerberos network authentication
@@ -151,10 +151,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
 export SOURCE_DATE_EPOCH=1610495317
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 pushd src
 %reconfigure --disable-static --with-system-es --with-system-et --with-ldap
 make  %{?_smp_mflags}
