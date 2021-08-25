@@ -242,6 +242,8 @@ libgssrpc.so.4:gssrpc_xprt_unregister
 libk5crypto.so.3:HIDDEN
 libk5crypto.so.3:is_coll_proof_cksum
 libk5crypto.so.3:is_keyed_cksum
+libk5crypto.so.3:k5_aes_encrypt
+libk5crypto.so.3:k5_aes_encrypt_key256
 libk5crypto.so.3:k5_enctype_to_ssf
 libk5crypto.so.3:k5_sha256
 libk5crypto.so.3:k5_sha256_final
@@ -320,8 +322,6 @@ libk5crypto.so.3:krb5_string_to_key
 libk5crypto.so.3:krb5_use_enctype
 libk5crypto.so.3:krb5_verify_checksum
 libk5crypto.so.3:krb5int_aes_decrypt
-libk5crypto.so.3:krb5int_aes_enc_blk
-libk5crypto.so.3:krb5int_aes_enc_key
 libk5crypto.so.3:krb5int_aes_encrypt
 libk5crypto.so.3:krb5int_arcfour_gsscrypt
 libk5crypto.so.3:krb5int_c_copy_keyblock
@@ -851,6 +851,7 @@ libkrb5.so.3:k5_add_pa_data_from_data
 libkrb5.so.3:k5_alloc_pa_data
 libkrb5.so.3:k5_authind_decode
 libkrb5.so.3:k5_build_conf_principals
+libkrb5.so.3:k5_cc_store_primary_cred
 libkrb5.so.3:k5_ccselect_free_context
 libkrb5.so.3:k5_change_error_message_code
 libkrb5.so.3:k5_etypes_contains
@@ -884,6 +885,7 @@ libkrb5.so.3:k5_internalize_keyblock
 libkrb5.so.3:k5_internalize_principal
 libkrb5.so.3:k5_is_string_numeric
 libkrb5.so.3:k5_kt_get_principal
+libkrb5.so.3:k5_kt_have_match
 libkrb5.so.3:k5_localauth_free_context
 libkrb5.so.3:k5_locate_kdc
 libkrb5.so.3:k5_marshal_cred
@@ -1280,7 +1282,6 @@ libkrb5.so.3:krb5_ser_unpack_int64
 libkrb5.so.3:krb5_server_decrypt_ticket_keytab
 libkrb5.so.3:krb5_set_config_files
 libkrb5.so.3:krb5_set_debugging_time
-libkrb5.so.3:krb5_set_default_in_tkt_ktypes
 libkrb5.so.3:krb5_set_default_realm
 libkrb5.so.3:krb5_set_default_tgs_enctypes
 libkrb5.so.3:krb5_set_default_tgs_ktypes
