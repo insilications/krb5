@@ -1,5 +1,6 @@
 PKG_NAME := krb5
-URL = https://github.com/krb5/krb5/archive/krb5-1.19.2-final/krb5-1.19.2.tar.gz
+URL = https://github.com/krb5/krb5.git
 ARCHIVES = 
+ARCHIVES_GIT = 
 
 include ../common/Makefile.common

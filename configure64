@@ -1,6 +1,8 @@
---enable-shared
+--disable-shared
+--enable-static
 --with-system-es
 --with-system-et
---without-ldap
+--with-ldap
+--with-readline
 --disable-gcc-warnings
 --disable-werror
