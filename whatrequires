@@ -1,1 +1,3 @@
 # This file contains recursive sources that require this package
+krb5-dev
+krb5-dev32

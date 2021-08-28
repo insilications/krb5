@@ -4,5 +4,6 @@ libcrypto.so.1.1
 libkeyutils.so.1
 libldap-2.4.so.2
 liblmdb.so
+libreadline.so.8
 libresolv.so.2
 libssl.so.1.1
