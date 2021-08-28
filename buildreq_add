@@ -17,6 +17,7 @@ glibc-dev32
 glibc-libc32
 groff
 keyutils-dev
+keyutils-staticdev
 lmdb-dev
 openldap-dev
 openssl-dev
