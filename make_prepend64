@@ -1,0 +1,3 @@
+# sd "\-lk5crypto" -- "-Wl,--whole-archive,--as-needed,/usr/lib64/libk5crypto.a,--no-whole-archive" $(fd -uu --follow .*Makefile$) $(fd -uu --follow .*pro$) $(fd -uu --follow .*mk$)
+# sd "\-lcom_err" -- "-Wl,--whole-archive,--as-needed,/usr/lib64/libcom_err.a,--no-whole-archive" $(fd -uu --follow .*Makefile$) $(fd -uu --follow .*pro$) $(fd -uu --follow .*mk$)
+# sd "\-lkrb5support" -- "-Wl,--whole-archive,--as-needed,/usr/lib64/libkrb5support.a,--no-whole-archive" $(fd -uu --follow .*Makefile$) $(fd -uu --follow .*pro$) $(fd -uu --follow .*mk$)
